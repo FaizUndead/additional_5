@@ -1,12 +1,12 @@
 module.exports = function check(str, bracketsConfig) {
-  function check(astr, config) {
+  
   var stack = [];
-  var opens = getOpens(config);
-  var closes = getCloses(config);
-  var str = astr.split("");
+  var opens = getOpens(bracketsConfig);
+  var closes = getCloses(bracketsConfig);
+  var astr = str.split("");
   var same = true;
-  for (var i = 0; i < str.length; i++) {
-    var char  = str[i];
+  for (var i = 0; i < astr.length; i++) {
+    var char  = astr[i];
     var index = opens.indexOf(char); 
     if(opens.includes(char)) {
       stack.push(closes[index]);
@@ -32,8 +32,8 @@ module.exports = function check(str, bracketsConfig) {
   }
   return true;
 
-}
-console.log(check('|(|)', [['(', ')'], ['|', '|']]));
+
+
 
 function getOpens(arr) {
   var opens = [];
