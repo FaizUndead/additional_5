@@ -4,7 +4,6 @@ module.exports = function check(str, bracketsConfig) {
   var opens = getOpens(bracketsConfig);
   var closes = getCloses(bracketsConfig);
   var astr = str.split("");
-  var same = true;
   for (var i = 0; i < astr.length; i++) {
     var char  = astr[i];
     var index = opens.indexOf(char); 
@@ -16,14 +15,16 @@ module.exports = function check(str, bracketsConfig) {
         return false;
       }
     }else {
-      if(same) {
+      if(!stack.includes(char)) {
         stack.push(char);
-      }else if(stack.pop() != char){
+        
+      }else if (stack.pop() != char){
+        
         return false;
       }
-      same = !(same);
+      
 
-    }
+    }    
 
     
   }
